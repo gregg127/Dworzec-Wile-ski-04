@@ -25,6 +25,9 @@
         <activity android:name=".Handlowa">
 
         </activity>
+        <activity android:name="RatuszArsenal">
+
+        </activity>
     </application>
 
 </manifest>

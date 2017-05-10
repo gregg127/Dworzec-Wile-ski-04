@@ -29,4 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public void goToHandlowa(View view){
         startActivity( new Intent(this, Handlowa.class) );
     }
+
+    public void goToRatuszArsenal (View view){
+        startActivity(new Intent(this, RatuszArsenal.class));
+    }
 }
