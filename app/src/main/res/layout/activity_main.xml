@@ -10,44 +10,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.grzesiek.dworzecwilenski04.MainActivity">
 
-    <TextView
+    <Button
+        android:text="Dworzec Wileński 04"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/polecenie"
-        android:layout_alignParentTop="true"
-        android:textStyle="normal|bold" />
-
-    <CheckedTextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
+        android:id="@+id/wilenskiButton"
+        android:layout_below="@+id/mainTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/checkedTextView"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textStyle="normal|bold"
-        android:layout_below="@+id/editText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:textSize="14sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp"
-        android:hint="@string/hint" />
+        android:onClick="goToWilenski"/>
 
     <Button
-        android:text="@string/button"
+        android:text="Handlowa 03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonOne"
-        android:layout_alignBottom="@+id/editText"
+        android:id="@+id/handlowaButton"
+        android:onClick="goToHandlowa"
+        android:layout_below="@+id/wilenskiButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Kliknij na przycisk przystanku, którego rozkład chcesz poznać\n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="18sp"
+        android:textAlignment="center" />
 </RelativeLayout>
