@@ -31,6 +31,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToRatuszArsenal (View view){
-        startActivity(new Intent(this, RatuszArsenal.class));
+        startActivity( new Intent(this, RatuszArsenal.class) );
     }
 }

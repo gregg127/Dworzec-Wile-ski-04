@@ -9,27 +9,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Grzesiek on 2017-05-10.
  */
 
 public class Handlowa extends AppCompatActivity {
-    final String site = "http://www.ztm.waw.pl/rozklad_nowy.php?c=182&l=1&n=1139&o=03";
+    final private String site = "http://www.ztm.waw.pl/rozklad_nowy.php?c=182&l=1&n=1139&o=03";
 
-    private boolean czyWystapilBlad;
-    private boolean ready;
-    private String source;
+    private String sourceCode;
+    private volatile boolean ready;
+
     private CheckedTextView output;
     private Button button;
     private EditText mEdit;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT) // RozkladJazdy.getSourceCode()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +33,7 @@ public class Handlowa extends AppCompatActivity {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                getSourceCode(); //sets the HTML code to source variable
+                sourceCode = RozkladJazdy.getSourceCode(site); //sets the HTML code to source variable
                 ready = true;
             }
         }).start();
@@ -54,45 +49,30 @@ public class Handlowa extends AppCompatActivity {
                 if(!ready){
                     output.setText("Pobieram rozkład, poczekaj chwilę i spróbuj ponownie.");
                 }
-                else if(czyWystapilBlad){ // in getSourceCode() exception thrown case
-                    output.setText(source);
-                    czyWystapilBlad = false;
-                    getSourceCode();
+                else if(sourceCode.length() < 100){ // in RozkladJazdy.getSourceCode() exception thrown case
+                    output.setText(sourceCode);
+                    ready = false;
+                    new Thread(new Runnable(){
+                        @Override
+                        public void run() {
+                            sourceCode = RozkladJazdy.getSourceCode(site); //sets the HTML code to source variable
+                            ready = true;
+                        }
+                    }).start();
                 } else {
-                    String godzina = mEdit.getText().toString();
-                    output.setText(getRozkladJazdy(godzina));
+                    int godzina = 0;
+                    try{
+                        godzina = Integer.parseInt(mEdit.getText().toString());
+                        if(godzina < 0 || godzina > 23){
+                            output.setText("Podano złą godzinę");
+                        } else
+                            output.setText(RozkladJazdy.getRozkladJazdy(sourceCode,godzina));
+                    } catch (NumberFormatException ex) {
+                        output.setText("Nic nie zostało wpisane. \nPoproszę o podanie godziny.");
+                    }
+
                 }
             }
         });
-    }
-    private String getRozkladJazdy(String godz){
-        //================= PERMISSION PROBLEMS
-        //http://stackoverflow.com/questions/17360924/securityexception-permission-denied-missing-internet-permission
-        //================
-
-        String regex = "\\s("+godz+":\\d{2})(.*?)\\(";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(source);
-        ArrayList<String> list = new ArrayList<>();
-        while(m.find()){
-            list.add(m.group(1) + "   ||" + m.group(2));
-        }
-        StringBuilder sb = new StringBuilder();
-        for(String e : list){
-            sb.append(e);
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void getSourceCode(){ // === WYKORZYSTANIE JSOUP
-        try {
-            Document docTemp = Jsoup.connect(site).get();
-            source = docTemp.text();
-        } catch(Exception ex){
-            source = "Wystąpił błąd przy ładowaniu strony.\nWłącz internet i spróbuj ponownie.";
-            czyWystapilBlad = true;
-        }
     }
 }
