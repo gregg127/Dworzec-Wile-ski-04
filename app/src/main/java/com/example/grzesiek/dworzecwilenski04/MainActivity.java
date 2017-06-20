@@ -13,13 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button wilenski = (Button) findViewById(R.id.wilenskiButton);
-        Button handlowa = (Button) findViewById(R.id.handlowaButton);
-
-        //Internet access thing
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
     }
 
     public void goToWilenski(View view){

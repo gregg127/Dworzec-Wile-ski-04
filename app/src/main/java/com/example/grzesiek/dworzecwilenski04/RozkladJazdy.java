@@ -13,11 +13,6 @@ import java.util.regex.Pattern;
 
 public abstract class RozkladJazdy {
     public static String getRozkladJazdy(String source, int godz){
-
-        //================= PERMISSION PROBLEMS
-        //http://stackoverflow.com/questions/17360924/securityexception-permission-denied-missing-internet-permission
-        //================
-
         Pattern p = Pattern.compile("\\s("+godz+":\\d{2})(.*?)\\(");
         Matcher m = p.matcher(source);
         ArrayList<String> list = new ArrayList<>();
@@ -36,8 +31,8 @@ public abstract class RozkladJazdy {
         try {
             Document docTemp = Jsoup.connect(url).get();
             src = docTemp.text();
-        } catch(Exception ex){
-            src = "Wystąpił błąd przy ładowaniu strony.\nWłącz internet i spróbuj ponownie.";
+        } catch(Exception ex){ // Timeout!
+            //...
         }
         return src;
     }

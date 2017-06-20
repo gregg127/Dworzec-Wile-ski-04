@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'androidkey'
+            keyPassword 'C7DCAEDE'
+            storeFile file('C:/Users/Grzesiek/Desktop/Android/android key.jks')
+            storePassword 'C7DCAEDE'
+        }
+    }
     compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '25'
     defaultConfig {
         applicationId "com.example.grzesiek.dworzecwilenski04"
         minSdkVersion 15
@@ -15,6 +23,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
