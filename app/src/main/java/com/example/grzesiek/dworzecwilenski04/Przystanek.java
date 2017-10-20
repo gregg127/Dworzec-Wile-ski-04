@@ -8,19 +8,18 @@ public class Przystanek {
     private final String url;
     private String sourceCode;
     private volatile boolean ready;
-
     public Przystanek(String url) {
         this.url = url;
     }
 
     public void startDownloading() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                sourceCode = RozkladJazdy.getSourceCode(url);
-                ready = true;
-            }
-        }).start();
+       new Thread(new Runnable() {
+           @Override
+           public void run() {
+               sourceCode = RozkladJazdy.getSourceCode(url);
+               ready = true;
+           }
+       }).start();
     }
     public String getRozkladJazdy(String hour) {
         if (!ready) {
@@ -28,7 +27,8 @@ public class Przystanek {
         } else if (sourceCode.length() < 100) { // ???
             ready = false;
             startDownloading();
-            return "Wystąpił błąd przy ładowaniu strony.\nWłącz internet i spróbuj ponownie.";
+            return "Wystąpił błąd przy ładowaniu strony.\nWłącz internet i spróbuj ponownie.\n("
+                    +sourceCode+")";
         } else {
             try {
                 int godzina = Integer.parseInt(hour);

@@ -20,14 +20,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="goToWilenski"/>
+        android:onClick="goToWilenski04"/>
 
     <Button
         android:text="Handlowa 03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/handlowaButton"
-        android:onClick="goToHandlowa"
+        android:onClick="goToHandlowa03"
         android:layout_below="@+id/wilenskiButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -55,5 +55,5 @@
         android:id="@+id/ratuszArsenalButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="goToRatuszArsenal"/>
+        android:onClick="goToRatuszArsenal09"/>
 </RelativeLayout>

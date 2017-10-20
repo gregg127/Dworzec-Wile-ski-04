@@ -8,11 +8,7 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 
-/**
- * Created by Grzesiek on 2017-05-10.
- */
-
-public class RatuszArsenal extends AppCompatActivity {
+public class RatuszArsenal09 extends AppCompatActivity {
     final private String site = "http://www.ztm.waw.pl/rozklad_nowy.php?c=182&l=1&n=7099&o=09";
     private Przystanek przystanek;
     private CheckedTextView output;
@@ -22,16 +18,16 @@ public class RatuszArsenal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ratusz_arsenal_lay);
-        przystanek = new Przystanek(site);
-        przystanek.startDownloading();
+        setContentView(R.layout.przystanek_lay);
         addComponents();
+        przystanek.startDownloading();
     }
     private void addComponents(){
-        mEdit = (EditText)findViewById(R.id.timeTextFieldRatuszArsenal);
-        output = (CheckedTextView)findViewById(R.id.outputRatuszArsenal);
+        przystanek = new Przystanek(site);
+        mEdit = (EditText)findViewById(R.id.timeTextField);
+        output = (CheckedTextView)findViewById(R.id.output);
         output.setMovementMethod(new ScrollingMovementMethod());
-        button = (Button) findViewById(R.id.checkScheduleRatuszArsenal);
+        button = (Button) findViewById(R.id.checkSchedule);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

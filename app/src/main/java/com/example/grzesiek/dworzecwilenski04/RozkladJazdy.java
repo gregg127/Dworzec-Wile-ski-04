@@ -32,7 +32,7 @@ public abstract class RozkladJazdy {
             Document docTemp = Jsoup.connect(url).get();
             src = docTemp.text();
         } catch(Exception ex){ // Timeout!
-            //...
+            return ex.toString();
         }
         return src;
     }

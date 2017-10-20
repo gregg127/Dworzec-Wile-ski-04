@@ -1,11 +1,9 @@
 package com.example.grzesiek.dworzecwilenski04;
 
 import android.content.Intent;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,15 +13,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void goToWilenski(View view){
-        startActivity( new Intent(this, Wilenski.class) );
+    public void goToWilenski04(View view){
+        startActivity( new Intent(this, Wilenski04.class) );
     }
 
-    public void goToHandlowa(View view){
-        startActivity( new Intent(this, Handlowa.class) );
+    public void goToHandlowa03(View view){
+        startActivity( new Intent(this, Handlowa03.class) );
     }
 
-    public void goToRatuszArsenal (View view){
-        startActivity( new Intent(this, RatuszArsenal.class) );
+    public void goToRatuszArsenal09(View view){
+        startActivity( new Intent(this, RatuszArsenal09.class) );
     }
+
+
 }
