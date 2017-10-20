@@ -8,14 +8,37 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.grzesiek.dworzecwilenski04.MainActivity">
+    tools:context="com.example.grzesiek.oktorejodjazd.MainActivity">
+
+    <TextView
+        android:id="@+id/mainTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/instruction"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <Button
+        android:text="Handlowa 03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/handlowaButton"
+        android:layout_below="@+id/mainTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="goToHandlowa03"/>
 
     <Button
         android:text="Dworzec Wileński 04"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/wilenskiButton"
-        android:layout_below="@+id/mainTextView"
+        android:id="@+id/wilenski04Button"
+        android:layout_below="@+id/handlowaButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -23,37 +46,29 @@
         android:onClick="goToWilenski04"/>
 
     <Button
-        android:text="Handlowa 03"
+        android:text="Dworzec Wileński 03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/handlowaButton"
-        android:onClick="goToHandlowa03"
-        android:layout_below="@+id/wilenskiButton"
+        android:id="@+id/wilenski03Button"
+        android:layout_below="@+id/wilenski04Button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="goToWilenski03"/>
 
-    <TextView
-        android:text="Kliknij na przycisk przystanku, którego rozkład chcesz poznać\n"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mainTextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp"
-        android:textAlignment="center" />
 
     <Button
         android:text="Metro Ratusz Arsenał 09"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/handlowaButton"
+        android:layout_below="@+id/wilenski03Button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/ratuszArsenalButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="goToRatuszArsenal09"/>
+
+
 </RelativeLayout>

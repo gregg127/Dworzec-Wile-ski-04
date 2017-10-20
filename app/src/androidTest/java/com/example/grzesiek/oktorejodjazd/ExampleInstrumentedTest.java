@@ -1,4 +1,4 @@
-package com.example.grzesiek.dworzecwilenski04;
+package com.example.grzesiek.oktorejodjazd;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.grzesiek.dworzecwilenski04", appContext.getPackageName());
+        assertEquals("com.example.grzesiek.oktorejodjazd", appContext.getPackageName());
     }
 }

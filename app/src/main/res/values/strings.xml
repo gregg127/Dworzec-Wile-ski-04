@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name"><font color="@colors/appName">O której odjazd?</font></string>
+    <string name="app_name"><font color="@colors/appName"><b>O której odjazd?</b></font></string>
     <string name="polecenie">Wpisz godzinę</string>
     <string name="button">Sprawdź</string>
     <string name="hint">Sama godzina(np. 12)</string>
+    <string name="instruction"><b><i>Kliknij na przycisk przystanku, którego rozkład chcesz poznać\n</i></b></string>
+
 </resources>

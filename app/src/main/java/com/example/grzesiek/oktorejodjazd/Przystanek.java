@@ -1,4 +1,4 @@
-package com.example.grzesiek.dworzecwilenski04;
+package com.example.grzesiek.oktorejodjazd;
 
 /**
  * Created by Grzesiek on 2017-06-20.
@@ -6,7 +6,7 @@ package com.example.grzesiek.dworzecwilenski04;
 
 public class Przystanek {
     private final String url;
-    private String sourceCode;
+    private volatile String sourceCode;
     private volatile boolean ready;
     public Przystanek(String url) {
         this.url = url;
@@ -41,7 +41,7 @@ public class Przystanek {
                     return temp;
                 }
             } catch (NumberFormatException ex) {
-                return "Nic nie zostało wpisane. \nPoproszę o podanie godziny.";
+                return "Nic nie zostało wpisane. \nWpisz godzinę.";
             }
         }
     }

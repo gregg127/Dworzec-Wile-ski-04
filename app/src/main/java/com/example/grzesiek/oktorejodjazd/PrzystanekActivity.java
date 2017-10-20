@@ -1,4 +1,4 @@
-package com.example.grzesiek.dworzecwilenski04;
+package com.example.grzesiek.oktorejodjazd;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +8,20 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 
-public class Wilenski01 extends AppCompatActivity {
-    final private String site = "http://www.ztm.waw.pl/rozklad_nowy.php?c=182&l=1&n=1003&o=01";
+/**
+ * Created by Grzesiek on 2017-10-20.
+ */
+
+public class PrzystanekActivity extends AppCompatActivity {
+    private String site ;
     private Przystanek przystanek;
     private CheckedTextView output;
     private Button button;
     private EditText mEdit;
+
+    public PrzystanekActivity(String site) {
+        this.site = site;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,7 @@ public class Wilenski01 extends AppCompatActivity {
         addComponents();
         przystanek.startDownloading();
     }
+
     private void addComponents(){
         przystanek = new Przystanek(site);
         mEdit = (EditText)findViewById(R.id.timeTextField);
