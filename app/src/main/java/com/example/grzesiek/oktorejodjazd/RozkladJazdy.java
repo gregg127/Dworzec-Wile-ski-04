@@ -2,7 +2,6 @@ package com.example.grzesiek.oktorejodjazd;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,14 +23,17 @@ public abstract class RozkladJazdy {
             sb.append(e);
             sb.append("\n");
         }
+        if(sb.toString().length() == 0 ){
+            return "Nic nie odjeżdża o tej godzinie";
+        }
         return sb.toString();
     }
     public static String getSourceCode(String url){
         String src = "";
         try {
-            Document docTemp = Jsoup.connect(url).get();
+            Document docTemp = Jsoup.connect(url).timeout(3000).get();
             src = docTemp.text();
-        } catch(Exception ex){ // Timeout!
+        } catch (Exception ex){
             return ex.toString();
         }
         return src;

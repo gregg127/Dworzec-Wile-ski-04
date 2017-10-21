@@ -1,5 +1,7 @@
 package com.example.grzesiek.oktorejodjazd;
 
+import java.net.SocketTimeoutException;
+
 /**
  * Created by Grzesiek on 2017-06-20.
  */
@@ -24,9 +26,14 @@ public class Przystanek {
     public String getRozkladJazdy(String hour) {
         if (!ready) {
             return "Pobieram rozkład, poczekaj chwilę i spróbuj ponownie.";
-        } else if (sourceCode.length() < 100) { // ???
+        } else if (sourceCode.length() < 200) { // Exception case
             ready = false;
             startDownloading();
+            if(sourceCode.contains("SocketTimeoutException")){
+                return "Przekroczono dopuszczalny czas pobierania strony.\n" +
+                        "Upewnij się, że masz działający internet " +
+                        "i spróbuj ponownie.\n("+sourceCode+")";
+            }
             return "Wystąpił błąd przy ładowaniu strony.\nWłącz internet i spróbuj ponownie.\n("
                     +sourceCode+")";
         } else {
