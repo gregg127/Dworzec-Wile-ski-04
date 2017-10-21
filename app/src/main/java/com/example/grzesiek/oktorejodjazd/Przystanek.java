@@ -1,7 +1,5 @@
 package com.example.grzesiek.oktorejodjazd;
 
-import java.net.SocketTimeoutException;
-
 /**
  * Created by Grzesiek on 2017-06-20.
  */
@@ -31,7 +29,7 @@ public class Przystanek {
             startDownloading();
             if(sourceCode.contains("SocketTimeoutException")){
                 return "Przekroczono dopuszczalny czas pobierania strony.\n" +
-                        "Upewnij się, że masz działający internet " +
+                        "Upewnij się, że masz działający internet, poczekaj chwilę " +
                         "i spróbuj ponownie.\n("+sourceCode+")";
             }
             return "Wystąpił błąd przy ładowaniu strony.\nWłącz internet i spróbuj ponownie.\n("
@@ -43,8 +41,6 @@ public class Przystanek {
                     return "Podano złą godzinę";
                 } else {
                     String temp = RozkladJazdy.getRozkladJazdy(sourceCode, godzina);
-                    if(temp.length() == 0)
-                        return "O godzinie "+godzina+" nic nie odjeżdża z tego przystanku :(";
                     return temp;
                 }
             } catch (NumberFormatException ex) {

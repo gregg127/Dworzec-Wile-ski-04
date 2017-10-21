@@ -24,14 +24,14 @@ public abstract class RozkladJazdy {
             sb.append("\n");
         }
         if(sb.toString().length() == 0 ){
-            return "Nic nie odjeżdża o tej godzinie";
+            return "O godzinie " +godz+ " nic nie odjeżdża z tego przystanku :(";
         }
         return sb.toString();
     }
     public static String getSourceCode(String url){
         String src = "";
         try {
-            Document docTemp = Jsoup.connect(url).timeout(3000).get();
+            Document docTemp = Jsoup.connect(url).timeout(4000).get();
             src = docTemp.text();
         } catch (Exception ex){
             return ex.toString();
