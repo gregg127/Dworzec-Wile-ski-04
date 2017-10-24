@@ -1,5 +1,6 @@
 package com.example.grzesiek.oktorejodjazd;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -19,10 +20,6 @@ public class PrzystanekActivity extends AppCompatActivity {
     private Button button;
     private EditText mEdit;
 
-    public PrzystanekActivity(String site) {
-        this.site = site;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +29,8 @@ public class PrzystanekActivity extends AppCompatActivity {
     }
 
     private void addComponents(){
+        Intent intent = getIntent();
+        site = intent.getStringExtra("site");
         przystanek = new Przystanek(site);
         mEdit = (EditText)findViewById(R.id.timeTextField);
         output = (CheckedTextView)findViewById(R.id.output);

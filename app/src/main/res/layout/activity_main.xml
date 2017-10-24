@@ -21,54 +21,14 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
-    <Button
-        android:text="Handlowa 03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/handlowaButton"
-        android:layout_below="@+id/mainTextView"
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goToHandlowa03"/>
-
-    <Button
-        android:text="Dworzec Wileński 04"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/wilenski04Button"
-        android:layout_below="@+id/handlowaButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goToWilenski04"/>
-
-    <Button
-        android:text="Dworzec Wileński 03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/wilenski03Button"
-        android:layout_below="@+id/wilenski04Button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goToWilenski03"/>
-
-
-    <Button
-        android:text="Metro Ratusz Arsenał 09"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/wilenski03Button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/ratuszArsenalButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="goToRatuszArsenal09"/>
+        android:drawSelectorOnTop="false"
+        android:layout_below="@+id/mainTextView" />
 
 
 </RelativeLayout>

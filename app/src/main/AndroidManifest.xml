@@ -18,17 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name="com.example.grzesiek.oktorejodjazd.Wilenski04">
-        </activity>
-        
-        <activity android:name="com.example.grzesiek.oktorejodjazd.Handlowa03">
-        </activity>
-        
-        <activity android:name="com.example.grzesiek.oktorejodjazd.RatuszArsenal09">
-        </activity>
-        
-        <activity android:name="com.example.grzesiek.oktorejodjazd.Wilenski03">
+
+        <activity android:name="com.example.grzesiek.oktorejodjazd.PrzystanekActivity">
         </activity>
 
     </application>

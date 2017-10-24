@@ -3,6 +3,6 @@
     <string name="polecenie">Wpisz godzinę</string>
     <string name="button">Sprawdź</string>
     <string name="hint">Sama godzina(np. 12)</string>
-    <string name="instruction"><i>Kliknij na przycisk przystanku, którego rozkład chcesz poznać\n</i></string>
+    <string name="instruction"><i>Kliknij na przystanek, którego rozkład chcesz poznać\n</i></string>
 
 </resources>
