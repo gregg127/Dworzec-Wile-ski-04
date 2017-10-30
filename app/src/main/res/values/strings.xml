@@ -2,7 +2,10 @@
     <string name="app_name"><font color="@colors/appName">O której odjazd?</font></string>
     <string name="polecenie">Wpisz godzinę</string>
     <string name="button">Sprawdź</string>
-    <string name="hint">Sama godzina(np. 12)</string>
-    <string name="instruction"><i>Kliknij na przystanek, którego rozkład chcesz poznać\n</i></string>
-
+    <string name="hint">Godzina (np. 14)</string>
+    <string name="instruction"><i>Kliknij na przystanek, którego rozkład chcesz poznać.\n</i></string>
+    <string name="busHint">Lokalizacja (np. Centrum)</string>
+    <string name="busText"><i>Wpisz nazwę przystanku, który chcesz dodać do swojej listy.
+        Po wpisaniu, kliknij przycisk.\n</i></string>
+    <string name="busStopBtn">SZUKAJ</string>
 </resources>

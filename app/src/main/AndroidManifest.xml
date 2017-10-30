@@ -21,6 +21,8 @@
 
         <activity android:name="com.example.grzesiek.oktorejodjazd.PrzystanekActivity">
         </activity>
+        <activity android:name="com.example.grzesiek.oktorejodjazd.NewBusStopActivity">
+        </activity>
 
     </application>
 

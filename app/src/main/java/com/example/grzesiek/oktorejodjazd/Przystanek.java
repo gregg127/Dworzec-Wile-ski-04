@@ -1,27 +1,20 @@
 package com.example.grzesiek.oktorejodjazd;
 
-/**
- * Created by Grzesiek on 2017-06-20.
- */
-
-public class Przystanek {
+class Przystanek {
     private final String url;
     private volatile String sourceCode;
     private volatile boolean ready;
-    public Przystanek(String url) {
+    Przystanek(String url) {
         this.url = url;
     }
 
-    public void startDownloading() {
-       new Thread(new Runnable() {
-           @Override
-           public void run() {
-               sourceCode = RozkladJazdy.getSourceCode(url);
-               ready = true;
-           }
+    void startDownloading() {
+       new Thread(() -> {
+           sourceCode = RozkladJazdy.getSourceCode(url);
+           ready = true;
        }).start();
     }
-    public String getRozkladJazdy(String hour) {
+    String getRozkladJazdy(String hour) {
         if (!ready) {
             return "Pobieram rozkład, poczekaj chwilę i spróbuj ponownie.";
         } else if (sourceCode.length() < 200) { // Exception case
@@ -40,8 +33,7 @@ public class Przystanek {
                 if (godzina < 0 || godzina > 23) {
                     return "Podano złą godzinę";
                 } else {
-                    String temp = RozkladJazdy.getRozkladJazdy(sourceCode, godzina);
-                    return temp;
+                    return RozkladJazdy.getRozkladJazdy(sourceCode, godzina);
                 }
             } catch (NumberFormatException ex) {
                 return "Nic nie zostało wpisane. \nWpisz godzinę.";

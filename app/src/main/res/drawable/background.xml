@@ -11,8 +11,12 @@
         android:color="#999999">
     </stroke>
     <gradient
+        android:type="linear"
+        android:centerX="50%"
         android:angle="270"
         android:startColor="#f6ff00"
-        android:endColor="#9cfcff">
+        android:centerColor="#88FF7D"
+        android:endColor="#9cfcff"
+        >
     </gradient>
 </shape>

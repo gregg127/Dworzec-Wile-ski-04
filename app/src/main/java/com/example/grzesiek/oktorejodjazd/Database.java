@@ -6,16 +6,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-
-/**
- * Created by Grzesiek on 2017-10-24.
- */
-
-
-// brak zabezpiecznia przed wciskaniem zlych danych i SQLInjection
+import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
-    public Database(Context con){
+
+    private static Database instance;
+
+    static Database getInstance(Context con) {
+        if(instance == null && con != null){
+            instance = new Database(con);
+            return instance;
+        } else if(con == null && instance == null) {
+            throw new IllegalArgumentException("Context cannot be null if an instance hasn't been initiated ");
+        } else {
+            return instance;
+        }
+    }
+
+    private Database(Context con){
         super(con, "przystanki.db" , null, 1);
     }
 
@@ -25,45 +33,67 @@ public class Database extends SQLiteOpenHelper {
                 "CREATE TABLE przystanki(" +
                 "id_przystanku INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nazwa_przystanku TEXT NOT NULL UNIQUE," +
-                "url TEXT NOT NULL," +
-                "ztm_source_code TEXT NOT NULL);" +
+                "url TEXT NOT NULL);"+
                 "");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-
+        // ...
     }
 
-    // DANE MUSZA BYC POPRAWNE
-    public void addBusStop(String name, String URL, String source_code){
+    void addBusStop(String name, String URL){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues row = new ContentValues();
         row.put("nazwa_przystanku" , name);
         row.put("url", URL);
-        row.put("ztm_source_code", source_code);
-        // db.insertOrThrow("przystanki", null, row);
-        // ta metoda, po to, ze jak postarasz sie wrzucic cos z nazwa przystnaku,
-        // ktora juz jest w bazie danych, to zrobi update calosci
         db.insertWithOnConflict("przystanki", null, row, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
-    // PRZY ZLYCH DANYCH ZWRACA NULLA
-    public String getResource(String name, String col){
-        // moze jako col wez enuma, a jak nie to dodaj obsluge bledu jak sie wpisze jakas glupote
-        // select rowny null case - ogarnij
+    String getURL(String name){
         SQLiteDatabase db = getReadableDatabase();
-        String[] cols = {col};
-        try{
+        String[] cols = {"url"};
+        try {
             Cursor cursor = db.query("przystanki",
                     cols,
                     "nazwa_przystanku='"+name+"'",
                     null, null, null, null);
-            cursor.moveToNext();// ????
-            return cursor.getString(0);
+            cursor.moveToNext();
+            String temp = cursor.getString(0);
+            cursor.close();
+            return temp;
         } catch (SQLiteException ex ){
-            return null;
+            return "err";
         }
+    }
 
+    ArrayList<String> getBusStopsNames(){
+        ArrayList<String> names = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        String[] cols = {"nazwa_przystanku"};
+        Cursor cursor = db.query("przystanki",
+                cols,null, null, null, null,null
+                );
+        while(cursor.moveToNext()){
+            names.add(cursor.getString(0));
+        }
+        cursor.close();
+        return names;
+    }
+
+
+    boolean inDatabase(String site){
+        SQLiteDatabase db = getReadableDatabase();
+        String[] cols = {"url"};
+        Cursor cursor = db.query("przystanki",
+                cols,
+                "url='"+site+"'",
+                null,null,null,null);
+        if(cursor.getCount() == 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
     }
 }

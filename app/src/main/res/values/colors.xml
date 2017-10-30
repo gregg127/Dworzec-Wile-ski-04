@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="appName">#000000</color>
-    <color name="colorPrimary">#f6ff00</color>
-    <color name="colorPrimaryDark">#dae200</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- LIMITED EDITION COLORS rotfl
+    <color name="colorPrimary">#dfff00</color>
+    <color name="colorPrimaryDark">#CBEB00</color>
+    <color name="colorAccent">#FF6696</color>
+    <color name="fabBackground">@android:color/background_light</color>
+    -->
+    <color name="fabBackground">#cc3333</color>
+    <color name="colorPrimary">#cc3333</color>
+    <color name="colorPrimaryDark">#bb2222</color>
+    <color name="colorAccent">#FF6696</color>
 </resources>
