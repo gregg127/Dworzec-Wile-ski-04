@@ -33,7 +33,7 @@ abstract class RozkladJazdy {
     static String getSourceCode(String url){
         String src;
         try {
-            Document docTemp = Jsoup.connect(url).timeout(5000).get();
+            Document docTemp = Jsoup.connect(url).timeout(6000).get();
             src = docTemp.text();
         } catch (Exception ex){
             return ex.toString();
@@ -85,4 +85,5 @@ abstract class RozkladJazdy {
         }
         return busURLsAndNames;
     }
+
 }

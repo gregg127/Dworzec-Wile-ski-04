@@ -157,7 +157,6 @@ public class NewBusStopActivity extends AppCompatActivity {
                     ex = e;
                     break;
                 }
-
             if(editable)
                 s = s.replaceFirst("(^osiedle )|(os\\. )","os.");
             else if(!ex.equals("osiedle młodych"))
