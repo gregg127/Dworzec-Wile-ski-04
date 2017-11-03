@@ -96,4 +96,9 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         return true;
     }
+
+    boolean delete(String name){
+        SQLiteDatabase db = getWritableDatabase();
+        return db.delete("przystanki","nazwa_przystanku=\""+name+"\"",null) > 0;
+    }
 }

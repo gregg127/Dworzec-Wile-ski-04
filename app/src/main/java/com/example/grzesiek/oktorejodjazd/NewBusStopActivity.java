@@ -163,6 +163,9 @@ public class NewBusStopActivity extends AppCompatActivity {
             else if(!ex.equals("osiedle młodych"))
                 s = s.replaceAll("os\\. ?","osiedle ");
         }
+        if(s.contains("ratusz")){
+            s = s.replaceAll(" ", "-");
+        }
 
         if(s.length() < 3)
             return null;

@@ -8,4 +8,9 @@
     <string name="busText"><i>Wpisz nazwę przystanku, który chcesz dodać do swojej listy.
         Po wpisaniu, kliknij przycisk.\n</i></string>
     <string name="busStopBtn">SZUKAJ</string>
+
+    <string name="deleteDialogMessage">Na pewno chcesz usunąć ten przystanek z listy?</string>
+    <string name="deleteDialogTitle">USUŃ PRZYSTANEK</string>
+    <string name="positiveDialogBtn">Tak</string>
+    <string name="negativeDialogBtn">Nie</string>
 </resources>
