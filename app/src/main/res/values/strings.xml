@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name"><font color="@colors/appName">O której odjazd?</font></string>
+    <string name="noBusStops"><i>Nie masz żadnych przystanków na liście.
+        Kliknij przycisk w prawym dolnym rogu aby dodać nowy przystanek.</i></string>
     <string name="polecenie">Wpisz godzinę</string>
     <string name="button">Sprawdź</string>
     <string name="hint">Godzina (np. 14)</string>
@@ -8,7 +10,6 @@
     <string name="busText"><i>Wpisz nazwę przystanku, który chcesz dodać do swojej listy.
         Po wpisaniu, kliknij przycisk.\n</i></string>
     <string name="busStopBtn">SZUKAJ</string>
-
     <string name="deleteDialogMessage">Na pewno chcesz usunąć ten przystanek z listy?</string>
     <string name="deleteDialogTitle">USUŃ PRZYSTANEK</string>
     <string name="positiveDialogBtn">Tak</string>

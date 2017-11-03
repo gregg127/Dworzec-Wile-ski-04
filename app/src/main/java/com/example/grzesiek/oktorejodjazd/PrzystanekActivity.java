@@ -1,5 +1,7 @@
 package com.example.grzesiek.oktorejodjazd;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ public class PrzystanekActivity extends AppCompatActivity {
     private Button button;
     private EditText mEdit;
     private ProgressBar progressBar;
+    private CheckedTextView textView;
     private String site;
     private String sourceCode;
     private boolean isSourceCodeDownloaded;
@@ -29,18 +32,42 @@ public class PrzystanekActivity extends AppCompatActivity {
     }
 
     private void addComponents(){
-        site = getIntent().getStringExtra("site");
+        site = getIntent().getStringExtra("site"); // may be err from Database.getUrl()
         mEdit = (EditText)findViewById(R.id.timeTextField);
         output = (CheckedTextView)findViewById(R.id.output);
         output.setMovementMethod(new ScrollingMovementMethod());
+        textView = (CheckedTextView)  findViewById(R.id.dateTextView);
+        textView.setText(getDay());
         button = (Button) findViewById(R.id.checkSchedule);
         button.setOnClickListener( v ->
                 new BusStopsSearchTask().execute(sourceCode, mEdit.getText().toString(), site)
         );
         progressBar = (ProgressBar) findViewById(R.id.przystanekProgressBar);
         progressBar.setVisibility(View.GONE);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
     }
 
+    private String getDay(){
+        Calendar instance = Calendar.getInstance();
+        int dayOfWeek = instance.get(Calendar.DAY_OF_WEEK);
+        int dayOfMonth = instance.get(Calendar.DAY_OF_MONTH );
+        int month = instance.get(Calendar.MONTH) + 1;
+        int year = instance.get(Calendar.YEAR);
+
+        System.out.println();
+        String polDay="";
+        switch (dayOfWeek){
+            case 1 : polDay = "Poniedziałek"; break ;
+            case 2 : polDay = "Wtorek"; break ;
+            case 3 : polDay = "Środa"; break ;
+            case 4 : polDay = "Czwartek"; break ;
+            case 5 : polDay = "Piątek"; break ;
+            case 6 : polDay = "Sobota"; break ;
+            case 7 : polDay = "Niedziela"; break ;
+        }
+        return "Rozkład jazdy z dzisiaj ("
+                + polDay + " " + dayOfMonth + "." + month + "." + year + ")";
+    }
     private void downloadForPresentHour(){
         String hour = Integer.toString(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
         mEdit.setText(hour);
