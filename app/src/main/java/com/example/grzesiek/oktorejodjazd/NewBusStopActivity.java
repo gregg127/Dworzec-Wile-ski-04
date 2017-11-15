@@ -52,7 +52,7 @@ public class NewBusStopActivity extends AppCompatActivity {
             if(temp != null)
                 new BusStopsSearchTask().execute(ZTMUrl, temp, options[0]);
             else
-                toastMessage("Niepoprawna nazwa", false);
+                toastMessage("Niepoprawna nazwa", Toast.LENGTH_SHORT);
         });
         generalBusStopList.setOnItemClickListener((par, view, pos, id) -> {
             String url = null;
@@ -83,25 +83,12 @@ public class NewBusStopActivity extends AppCompatActivity {
             name = par.getItemAtPosition(pos).toString().replaceAll(" ».*","");
             if(!db.inDatabase(url)){
                 db.addBusStop(name, url);
-                toastMessage("Dodano do listy!", true);
+                toastMessage("Dodano do listy!", Toast.LENGTH_SHORT);
             } else {
-                toastMessage("Ten przystanek jest już obecny na Twojej liście", true);
+                toastMessage("Ten przystanek jest już obecny na Twojej liście",
+                        Toast.LENGTH_SHORT);
             }
         });
-    }
-
-    private void toastMessage(String msg, boolean isLong){
-        int dur;
-        if(isLong)
-            dur = Toast.LENGTH_LONG;
-        else
-            dur = Toast.LENGTH_SHORT;
-        if( toast == null || toast.getView().getWindowVisibility() != View.VISIBLE ){
-            runOnUiThread( () -> {
-                toast = Toast.makeText(NewBusStopActivity.this, msg, dur);
-                toast.show();
-            });
-        }
     }
 
     private void switchListsVisibility(boolean generalListVis){
@@ -114,7 +101,7 @@ public class NewBusStopActivity extends AppCompatActivity {
         }
     }
 
-    private void progressBarIsEnabled(boolean bool){
+    private void progressBarSetEnabled(boolean bool){
         progress.setIndeterminate(bool);
         if(bool)
             progress.setVisibility(View.VISIBLE);
@@ -178,6 +165,12 @@ public class NewBusStopActivity extends AppCompatActivity {
         return s;
     }
 
+    private void toastMessage(String msg, int dur){
+        if(toast != null)
+            toast.cancel();
+        toast = Toast.makeText(this, msg, dur);
+        toast.show();
+    }
 
     // may have garbage collector difficulties
     private class BusStopsSearchTask extends AsyncTask<String, Void, List<String>> {
@@ -185,8 +178,9 @@ public class NewBusStopActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            toastMessage("Szukam ...", false);
-            progressBarIsEnabled(true);
+            checkButton.setEnabled(false);
+            toastMessage("Szukam ...", Toast.LENGTH_SHORT);
+            progressBarSetEnabled(true);
         }
 
         @Override
@@ -208,17 +202,18 @@ public class NewBusStopActivity extends AppCompatActivity {
 
         @Override
         protected  void onPostExecute(List<String> result){
-            progressBarIsEnabled(false);
+            progressBarSetEnabled(false);
+            checkButton.setEnabled(true);
             if(result == null){ // exception
                 generalBusStopList.setAdapter(null);
-                toastMessage("Wystąpił błąd przy pobieraniu strony." +
-                        " Upewnij się, że masz działający internet i spróbuj ponownie", true);
-
+                toastMessage("Wystąpił błąd przy pobieraniu strony. " +
+                                "Upewnij się, że masz działający internet i spróbuj ponownie",
+                        Toast.LENGTH_LONG);
             } else if(result.size() == 0){ // nothing found
                 generalBusStopList.setAdapter(null);
                 specificBusStopList.setAdapter(null);
-                toastMessage("Nie znaleziono takiej lokalizacji", true);
-
+                toastMessage( "Nie znaleziono takiej lokalizacji",
+                        Toast.LENGTH_SHORT );
             } else if(option.equals("GENERAL")){
                 switchListsVisibility(true);
                 generalBusStopList.setAdapter( new ArrayAdapter<>(
@@ -226,8 +221,8 @@ public class NewBusStopActivity extends AppCompatActivity {
                         android.R.layout.simple_list_item_1,
                         result
                 ));
-                toastMessage("Kliknij na przystanek z odpowiednim miastem", false);
-
+                toastMessage("Kliknij na przystanek z odpowiednim miastem",
+                        Toast.LENGTH_SHORT );
             } else if(option.equals("SPECIFIC")){
                 switchListsVisibility(false);
                 specificBusStopList.setAdapter( new ArrayAdapter<>(
@@ -236,7 +231,7 @@ public class NewBusStopActivity extends AppCompatActivity {
                         result
                 ));
                 toastMessage("Kliknij na przystanek, który chcesz dodać do swojej listy",
-                        false);
+                        Toast.LENGTH_SHORT );
             }
         }
     }
