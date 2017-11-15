@@ -29,6 +29,7 @@ public class NewBusStopActivity extends AppCompatActivity {
     private ListView generalBusStopList;
     private ListView specificBusStopList;
     private Map<String, String> map;
+    private Toast toast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,12 +91,17 @@ public class NewBusStopActivity extends AppCompatActivity {
     }
 
     private void toastMessage(String msg, boolean isLong){
-        int temp;
+        int dur;
         if(isLong)
-            temp = Toast.LENGTH_LONG;
+            dur = Toast.LENGTH_LONG;
         else
-            temp = Toast.LENGTH_SHORT;
-        Toast.makeText(getApplicationContext(), msg, temp).show();
+            dur = Toast.LENGTH_SHORT;
+        if( toast == null || toast.getView().getWindowVisibility() != View.VISIBLE ){
+            runOnUiThread( () -> {
+                toast = Toast.makeText(NewBusStopActivity.this, msg, dur);
+                toast.show();
+            });
+        }
     }
 
     private void switchListsVisibility(boolean generalListVis){
@@ -210,6 +216,7 @@ public class NewBusStopActivity extends AppCompatActivity {
 
             } else if(result.size() == 0){ // nothing found
                 generalBusStopList.setAdapter(null);
+                specificBusStopList.setAdapter(null);
                 toastMessage("Nie znaleziono takiej lokalizacji", true);
 
             } else if(option.equals("GENERAL")){

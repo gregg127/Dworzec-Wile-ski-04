@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import java.util.Calendar;
 
 public class PrzystanekActivity extends AppCompatActivity {
@@ -18,7 +20,7 @@ public class PrzystanekActivity extends AppCompatActivity {
     private Button button;
     private EditText mEdit;
     private ProgressBar progressBar;
-    private CheckedTextView textView;
+    private TextView textView;
     private String site;
     private String sourceCode;
     private boolean isSourceCodeDownloaded;
@@ -36,7 +38,7 @@ public class PrzystanekActivity extends AppCompatActivity {
         mEdit = (EditText)findViewById(R.id.timeTextField);
         output = (CheckedTextView)findViewById(R.id.output);
         output.setMovementMethod(new ScrollingMovementMethod());
-        textView = (CheckedTextView)  findViewById(R.id.dateTextView);
+        textView = (TextView)  findViewById(R.id.dateTextView);
         textView.setText(getDay());
         button = (Button) findViewById(R.id.checkSchedule);
         button.setOnClickListener( v ->
@@ -54,16 +56,16 @@ public class PrzystanekActivity extends AppCompatActivity {
         int month = instance.get(Calendar.MONTH) + 1;
         int year = instance.get(Calendar.YEAR);
 
-        System.out.println();
-        String polDay="";
+        System.out.println(dayOfWeek);
+        String polDay = "";
         switch (dayOfWeek){
-            case 1 : polDay = "Poniedziałek"; break ;
-            case 2 : polDay = "Wtorek"; break ;
-            case 3 : polDay = "Środa"; break ;
-            case 4 : polDay = "Czwartek"; break ;
-            case 5 : polDay = "Piątek"; break ;
-            case 6 : polDay = "Sobota"; break ;
-            case 7 : polDay = "Niedziela"; break ;
+            case Calendar.MONDAY : polDay = "Poniedziałek"; break ;
+            case Calendar.TUESDAY : polDay = "Wtorek"; break ;
+            case Calendar.WEDNESDAY : polDay = "Środa"; break ;
+            case Calendar.THURSDAY : polDay = "Czwartek"; break ;
+            case Calendar.FRIDAY : polDay = "Piątek"; break ;
+            case Calendar.SATURDAY : polDay = "Sobota"; break ;
+            case Calendar.SUNDAY : polDay = "Niedziela"; break ;
         }
         return "Rozkład jazdy z dzisiaj ("
                 + polDay + " " + dayOfMonth + "." + month + "." + year + ")";
