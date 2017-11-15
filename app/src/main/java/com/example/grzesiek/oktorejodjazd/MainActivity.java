@@ -31,15 +31,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onResume(){
         super.onResume();
-        adapter.clear();
-        getDatabaseData();
-        if(busStopsNames.size() == 0){
-            setEmptyListMessageVisible(true);
-        } else {
-            setEmptyListMessageVisible(false);
-            adapter.addAll(busStopsNames);
-            adapter.notifyDataSetChanged();
-        }
+        refresh();
     }
 
     private void init(){
@@ -91,9 +83,7 @@ public class MainActivity extends AppCompatActivity{
                 .setPositiveButton(R.string.positiveDialogBtn, (dial, id) -> {
                     if(db.delete(listView.getItemAtPosition(pos).toString())){
                         adapter.remove(listView.getItemAtPosition(pos).toString());
-                        adapter.notifyDataSetChanged();
-                        if(adapter.getCount() == 0)
-                            setEmptyListMessageVisible(true);
+                        refresh();
                     }
                 })
                 .setNegativeButton(R.string.negativeDialogBtn, (dial, id) -> {
@@ -107,5 +97,16 @@ public class MainActivity extends AppCompatActivity{
             emptyListTextView.setVisibility(View.VISIBLE);
         else
             emptyListTextView.setVisibility(View.GONE);
+    }
+    private void refresh(){
+        adapter.clear();
+        getDatabaseData();
+        if(busStopsNames.size() == 0){
+            setEmptyListMessageVisible(true);
+        } else {
+            setEmptyListMessageVisible(false);
+            adapter.addAll(busStopsNames);
+            adapter.notifyDataSetChanged();
+        }
     }
 }

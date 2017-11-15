@@ -64,8 +64,9 @@ public class Database extends SQLiteOpenHelper {
             cursor.close();
             return temp;
         } catch (SQLiteException ex ){
+            ex.printStackTrace();
             return "sqlerr";
-        } catch (CursorIndexOutOfBoundsException ex){ // may cause problems - fix
+        } catch (CursorIndexOutOfBoundsException ex){
             throw new CursorIndexOutOfBoundsException("");
             //return "curerr";
         }

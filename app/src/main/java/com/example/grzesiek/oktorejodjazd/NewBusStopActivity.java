@@ -206,6 +206,7 @@ public class NewBusStopActivity extends AppCompatActivity {
             checkButton.setEnabled(true);
             if(result == null){ // exception
                 generalBusStopList.setAdapter(null);
+                specificBusStopList.setAdapter(null);
                 toastMessage("Wystąpił błąd przy pobieraniu strony. " +
                                 "Upewnij się, że masz działający internet i spróbuj ponownie",
                         Toast.LENGTH_LONG);

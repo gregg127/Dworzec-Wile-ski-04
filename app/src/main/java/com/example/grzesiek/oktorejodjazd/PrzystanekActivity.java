@@ -112,9 +112,13 @@ public class PrzystanekActivity extends AppCompatActivity {
                         return "Przekroczono dopuszczalny czas pobierania strony.\n" +
                                 "Upewnij się, że masz działający internet, " +
                                 "i spróbuj ponownie.\n(" + src + ")";
+                    } else if (src.contains("UnknownHostException")){
+                        return "Wystąpił błąd przy ładowaniu strony.\n" +
+                                "Włącz internet i spróbuj ponownie.\n(" + src + ")";
+                    } else {
+                        return "Wystąpił nieoczekiwany błąd przy ładowaniu strony.\n" +
+                                "Spróbuj ponownie.\n(" + src + ")";
                     }
-                    return "Wystąpił błąd przy ładowaniu strony.\n" +
-                            "Włącz internet i spróbuj ponownie.\n(" + src + ")";
                 } else { // successfully downloaded
                     sourceCode = src;
                     isSourceCodeDownloaded = true;
@@ -135,11 +139,11 @@ public class PrzystanekActivity extends AppCompatActivity {
         private String getRozkladJazdy(String hour, String source){
             try {
                 int h = Integer.parseInt(hour);
-                if (h < 0 || h > 23) {
+                if (h < 0 || h > 24)
                     return "Podano złą godzinę";
-                } else {
-                    return RozkladJazdy.getRozkladJazdy(source, h);
-                }
+                else if (h == 24)
+                    h = 0;
+                return RozkladJazdy.getRozkladJazdy(source, h);
             } catch (NumberFormatException ex) {
                 return "Nic nie zostało wpisane. \nWpisz godzinę.";
             }
