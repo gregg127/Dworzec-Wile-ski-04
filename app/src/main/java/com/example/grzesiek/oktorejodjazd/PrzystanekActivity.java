@@ -53,7 +53,7 @@ public class PrzystanekActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    
+
     private void addComponents(){
         site = getIntent().getStringExtra("site"); // may be err from Database.getUrl()
         mEdit = (EditText)findViewById(R.id.timeTextField);
