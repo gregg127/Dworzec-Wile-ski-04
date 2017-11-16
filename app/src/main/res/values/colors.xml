@@ -11,4 +11,6 @@
     <color name="colorPrimary">#cc3333</color>
     <color name="colorPrimaryDark">#bb2222</color>
     <color name="colorAccent">#FF6696</color>
+    <color name="linkColor">#0000EE</color>
+    <color name="linkFocus">#9eceff</color>
 </resources>
